@@ -26,12 +26,12 @@ function randomString()
 	return randomstring;
 }
 
-
-const data = randomString('file1.csv');
+const f_name = 'file1.csv'
+const data = randomString(f_name);
 function csv_file_size() 
 {
 	const fs = require("fs"); //Load the filesystem module
-	const stats = fs.statSync("C:/Users/KSHITIJ/Desktop/score/file1.csv");
+	const stats = fs.statSync(f_name);
 	const fileSizeInBytes = stats.size;
 	return parseInt(fileSizeInBytes);
 }
@@ -50,7 +50,7 @@ function appending_csv()
 {
 	var fs = require('fs');
  	var data1 = randomString();
-	fs.appendFileSync('C:/Users/KSHITIJ/Desktop/score/file1.csv',data, 'utf8');    // callback function
+	fs.appendFileSync(f_name,data, 'utf8');    // callback function
 }
 
 
@@ -59,7 +59,7 @@ async function main()
 
 	try
 	{
-	  await fs.writeFile('file1.csv', data);	// need to be in an async function
+	  await fs.writeFile(f_name, data);	// need to be in an async function
 	}
 	catch(e)
 	{
@@ -80,7 +80,7 @@ async function main()
 	console.log(csv_file_size())
 	try
 	{	
-	 	const data = await fs.readFile('file1.csv');
+	 	const data = await fs.readFile(f_name);
 	 	var h = {};
 	 	var hs = new Set();
 	 	var j = 0;
