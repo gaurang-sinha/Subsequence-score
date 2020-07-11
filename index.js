@@ -53,7 +53,7 @@ function appending_csv()
 }
 
 
-async function main( f_size)
+async function main(f_size)
 {
 
 	try
@@ -92,7 +92,7 @@ async function main( f_size)
 	 	while(j < 100000)	//loop must run till end of file to read all characters
 	 	{
 			let sub = '';
-			for(let i = j;i < j + 30; i++)		//iteration logic for 3000 subsequence characters,change the value from 30 to 3000
+			for(let i = j;i < j + 3000; i++)		//iteration logic for 3000 subsequence characters,change the value from 30 to 3000
 			{			
 				sub += String.fromCharCode(data[i]);
 			} 
@@ -107,17 +107,9 @@ async function main( f_size)
 				h[sub] = hmm()
 			}
 		}
-		// let max = Object.keys(h).reduce((a, v) => Math.max(a, h[v]), -Infinity);
-		// let result = Object.keys(h).filter(v => h[v] === max);
-		// console.log(result);		
-		// for (const value of result) 
-		// {
-
-	 //  		console.log(Math.pow(3000, 2) * Math.pow((h[value] - 1), 0.33));	//score of the subsequence
-	 //  		break;	//for displaying the score only once,for loop can be 
-		// }
-		var max="";
-		var result = Object.keys(h).reduce(function(acc, val){
+		
+		let max="";
+		let result = Object.keys(h).reduce(function(acc, val){
 		    if(max < h[val]) (max=h[val], acc={});
 		    if(h[val]==max) acc[val] = Math.pow(3000, 2) * Math.pow((h[val] - 1), 0.33);
 		    return acc;
@@ -130,6 +122,7 @@ async function main( f_size)
 	}
 }
 
-var desired_f_size = 3221225472;		//file size in bytes for creating a 3gb csv file 
-main(desired_f_size)
+let desired_f_size_in_GB = 3;
+var desired_f_size_in_bytes = desired_f_size_in_GB*1024*1024*1024;		//file size in bytes for creating a 3gb csv file 
+main(desired_f_size_in_bytes)
 
